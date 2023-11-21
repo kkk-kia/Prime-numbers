@@ -5,32 +5,37 @@ var answer = document.getElementById("answer");
 var divPixel = document.getElementById("divPixel")
 var divInput = document.getElementById("divInput")
 
-var avalNumber = [2];
-
-
-makeAvalNumber();
 
 btn.addEventListener("click", giveToUser);
 
-function makeAvalNumber() {
-  for (var i = 3; i <= 100; i += 2) {
-    var q = true;
-    for (var k = 0; k < avalNumber.length; k++) {
-      if (i % avalNumber[k] == 0) {
-        q = false;
-      }
-    }
-    if (q == true) {
-      avalNumber.push(i);
-    }
-  }
-}
 
 function giveToUser() {
-  answer.innerHTML = "";
-  for (i = 0; i < avalNumber.length; i++) {
-    if (avalNumber[i] >= from.value && avalNumber[i] <= to.value) {
-      answer.innerHTML += avalNumber[i] + ", ";
+  answer.innerHTML = ""
+
+  var avalNumber = [];
+  if (from.value <= 2) {
+    avalNumber.push(2)
+  }
+  if (from.value <= 3) {
+    avalNumber.push(3)
+  }
+
+  for (var i = 1; i < to.value; i++) {
+    var x = (6 * i) - 1
+    var y = (6 * i) + 1
+    if (x >= from.value && x <= to.value) {
+      avalNumber.push(x)
     }
+    if (y >= from.value && y <= to.value) {
+      avalNumber.push(y)
+    }
+    if (x > to.value) {
+      break
+    }
+  }
+
+
+  for (i = 0; i < avalNumber.length; i++) {
+    answer.innerHTML += avalNumber[i] + ", "
   }
 }
